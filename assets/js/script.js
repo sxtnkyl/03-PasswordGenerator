@@ -17,17 +17,13 @@ let options = {
 
 //make sure length has only numbers/within range
 function checkLength(l) {
-  function retry() {
-    newInput = window.prompt(
-      "ILL ASK AGAIN- Enter a password length from 8-128"
-    );
-    checkLength(newInput);
-  }
   var regExp = /[a-zA-Z]/g;
   if (regExp.test(l)) {
-    retry();
+    window.alert("Password must be a length from 8-128");
+    return null;
   } else if (l < 8 || l > 128) {
-    retry();
+    window.alert("Password must be a length from 8-128");
+    return null;
   } else {
     return l;
   }
@@ -38,6 +34,7 @@ function setOptions(o) {
   var pwLen = prompt("Enter a password length from 8-128");
   //check length until correct
   let len = checkLength(pwLen);
+  if (len == null) return;
   o.length = len;
   var spChars = confirm("Do you want to include special characters?");
   if (spChars) o.spChars = true;
